@@ -10,7 +10,7 @@ const routes = require('./routes/index');
 const errorsHandler = require('./middlewares/errorsHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3000 } = process.env;
+// const { PORT = 3000 } = process.env; // ошибка запроса на сервер без указания порта
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // за 15 минут
   max: 100, // можно совершить максимум 100 запросов с одного IP
@@ -36,4 +36,4 @@ app.use(errorLogger); // подключаем логгер ошибок
 // обработчики ошибок
 app.use(errors()); // обработчик ошибок celebrate
 app.use(errorsHandler);
-app.listen(PORT);
+app.listen(80); // в аргументе был PORT
