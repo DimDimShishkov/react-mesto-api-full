@@ -1,9 +1,0 @@
-.auth__fieldset {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  border: none;
-  padding: 0;
-  margin: 0;
-}
