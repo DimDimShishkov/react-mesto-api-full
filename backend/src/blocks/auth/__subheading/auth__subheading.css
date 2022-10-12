@@ -1,0 +1,14 @@
+.auth__subheading {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  margin: 15px 0 0;
+}
+
+@media screen and (max-width: 660px) {
+  .auth__subheading {
+    margin-top: 20px;
+  }
+}

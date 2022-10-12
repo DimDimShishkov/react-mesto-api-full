@@ -1,0 +1,11 @@
+.popup__label_value_name {
+  margin: 37px 0 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 460px) {
+  .popup__label_value_name {
+    margin: 65px 0 0;
+    padding: 0;
+  }
+}

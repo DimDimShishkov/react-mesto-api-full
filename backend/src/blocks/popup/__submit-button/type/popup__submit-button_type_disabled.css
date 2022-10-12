@@ -1,0 +1,5 @@
+.popup__submit-button_type_disabled {
+  background: none;
+  color: #000000;
+  opacity: 0.8;
+}
