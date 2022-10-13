@@ -1,6 +1,6 @@
 import { CurrentUserContext } from 'contexts/CurrentUserContext';
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { authCheckIn, authRegister, authTokenCheck } from 'utils/Auth';
 import { api } from '../utils/api';
 import AddPlacePopup from './AddPlacePopup';
@@ -239,6 +239,7 @@ function App() {
 
   useEffect(() => {
     let jwt = localStorage.getItem('jwt');
+    
     if (jwt) {
       authorisation(jwt);
     }

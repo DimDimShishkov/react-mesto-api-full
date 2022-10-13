@@ -9,6 +9,7 @@ const rateLimit = require('express-rate-limit');
 const routes = require('./routes/index');
 const errorsHandler = require('./middlewares/errorsHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const headerHandler = require('./middlewares/headerHandler');
 
 // const { PORT = 3000 } = process.env; // ошибка запроса на сервер без указания порта
 const limiter = rateLimit({
@@ -28,6 +29,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // подключаемся к серверу mongo
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
+});
+
+// удалить после успешного прохождения ревью
+app.use(headerHandler);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
 });
 
 app.use(routes); // обработка всех маршрутов

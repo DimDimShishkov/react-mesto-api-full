@@ -45,7 +45,7 @@ function Header({ email, logOff }) {
 
   return (
     <header className={`header ${burger && 'header_active'}`}>
-      <a href="#" className="header__link"></a>
+      <div className="header__link"></div>
       {authbutton}
     </header>
   );
