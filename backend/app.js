@@ -6,12 +6,13 @@ const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const path = require('path');
 const routes = require('./routes/index');
 const errorsHandler = require('./middlewares/errorsHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const headerHandler = require('./middlewares/headerHandler');
 
-// const { PORT = 3000 } = process.env; // ошибка запроса на сервер без указания порта
+const { PORT = 3000 } = process.env; // ошибка запроса на сервер без указания порта
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // за 15 минут
   max: 100, // можно совершить максимум 100 запросов с одного IP
@@ -20,8 +21,8 @@ const limiter = rateLimit({
 const app = express();
 app.use(helmet());
 
-app.use(limiter); // подключаем rate-limiter
 app.use(requestLogger); // подключаем логгер запросов
+app.use(limiter); // подключаем rate-limiter
 app.use(cookieParser()); // подключаем парсер кук как мидлвэр
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -40,10 +41,14 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
+app.use('/static', express.static(path.join(__dirname, '../client/build//static')));
+app.get('*', (req, res) => {
+  res.sendFile('index.html', { root: path.join(__dirname, 'public') });
+});
 app.use(routes); // обработка всех маршрутов
 app.use(errorLogger); // подключаем логгер ошибок
 
 // обработчики ошибок
 app.use(errors()); // обработчик ошибок celebrate
 app.use(errorsHandler);
-app.listen(80); // в аргументе был PORT
+app.listen(PORT); // в аргументе было 80

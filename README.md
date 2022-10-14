@@ -3,5 +3,5 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 IP 51.250.8.5
-Frontend https://www.mesto-shishkov.nomoredomains.icu
-Backend https://www.api.mesto-shishkov.nomoredomains.icu
+Frontend https://mesto-shishkov.nomoredomains.icu
+Backend https://api.mesto-shishkov.nomoredomains.icu

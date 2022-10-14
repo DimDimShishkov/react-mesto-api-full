@@ -1,4 +1,4 @@
-const BASE_URL = "https://auth.nomoreparties.co";
+const BASE_URL = "https://api.mesto-shishkov.nomoredomains.icu";
 
 const handleReturn = (res) => {
   if (res.ok) {
