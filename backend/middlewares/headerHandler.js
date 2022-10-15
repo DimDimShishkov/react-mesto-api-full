@@ -3,6 +3,7 @@ const allowedCors = [
   'https://praktikum.tk',
   'http://praktikum.tk',
   'localhost:3000',
+  'https://mesto-shishkov.nomoredomains.icu',
 ];
 
 // eslint-disable-next-line consistent-return
@@ -14,7 +15,7 @@ module.exports = (err, req, res, next) => {
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
   // сохраняем список заголовков исходного запроса
   const requestHeaders = req.headers['access-control-request-headers'];
-
+  req.header('Access-Control-Allow-Credentials', true);
   // проверяем, что источник запроса есть среди разрешённых
   if (allowedCors.includes(origin)) {
     // устанавливаем заголовок, который разрешает браузеру запросы с этого источника

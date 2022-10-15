@@ -6,7 +6,6 @@ const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-// const path = require('path');
 const routes = require('./routes/index');
 const errorsHandler = require('./middlewares/errorsHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -41,10 +40,6 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-// app.use('/static', express.static(path.join(__dirname, '../client/build//static')));
-// app.get('*', (req, res) => {
-//  res.sendFile('index.html', { root: path.join(__dirname, 'public') });
-// });
 app.use(routes); // обработка всех маршрутов
 app.use(errorLogger); // подключаем логгер ошибок
 
