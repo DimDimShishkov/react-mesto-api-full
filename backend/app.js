@@ -11,7 +11,7 @@ const rateLimit = require('express-rate-limit');
 const routes = require('./routes/index');
 const errorsHandler = require('./middlewares/errorsHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { headerHandler } = require('./middlewares/headerHandler');
+const headerHandler = require('./middlewares/headerHandler');
 
 const { PORT = 3000 } = process.env; // ошибка запроса на сервер без указания порта
 const limiter = rateLimit({
