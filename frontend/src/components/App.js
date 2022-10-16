@@ -226,7 +226,6 @@ function App() {
             id: res.data._id,
             email: res.data.email,
           });
-
           history.push('/');
         }
       })
@@ -237,7 +236,6 @@ function App() {
 
   useEffect(() => {
     let jwt = localStorage.getItem('jwt');
-
     if (jwt) {
       authorisation(jwt);
     }

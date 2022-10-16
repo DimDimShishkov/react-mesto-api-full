@@ -1,4 +1,5 @@
 const BASE_URL = "https://api.mesto-shishkov.nomoredomains.icu";
+// const BASE_URL = "http://localhost";
 
 const handleReturn = (res) => {
   if (res.ok) {
@@ -44,7 +45,7 @@ export const authTokenCheck = (jwt) => {
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json",
-      "Authorization" : `Bearer ${jwt}`,
+      "Authorization" : `${jwt}`,
     },
   }).then((res) => handleReturn(res));
 }

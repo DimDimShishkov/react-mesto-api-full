@@ -4,7 +4,8 @@ const Unauthorized = require('../errors/Unauthorized');
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports = (req, res, next) => {
-  const authorization = req.cookies.jwt; // достаём авторизационный заголовок
+  const { authorization } = req.headers; // достаём авторизационный заголовок
+  // console.dir(req.headers.authorization);
   // верифицируем токен
   let payload;
   try {
