@@ -31,5 +31,6 @@ module.exports = (req, res, next) => {
     // завершаем обработку запроса и возвращаем результат клиенту
     return res.end();
   }
+  console.dir(req.headers);
   return next();
 };

@@ -4,19 +4,7 @@ const Unauthorized = require('../errors/Unauthorized');
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports = (req, res, next) => {
-  const { origin } = req.headers;
-  console.log(origin);
-  // тут будет вся авторизация
-  // достаём авторизационный заголовок
-  const authorization = req.cookies.jwt;
-  // убеждаемся, что он есть или начинается с Bearer
-  /*   if (!authorization || !authorization.startsWith('Bearer ')) { */
-  if (!authorization) {
-    next(new Unauthorized('Необходима авторизация'));
-  }
-  // извлечём токен
-  /*   const token = authorization.replace('Bearer ', ''); */
-  // const token = req.cookies.jwt;
+  const authorization = req.cookies.jwt; // достаём авторизационный заголовок
   // верифицируем токен
   let payload;
   try {

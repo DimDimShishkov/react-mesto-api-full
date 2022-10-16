@@ -6,7 +6,6 @@ const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-// const cors = require('cors');
 
 const routes = require('./routes/index');
 const errorsHandler = require('./middlewares/errorsHandler');
@@ -20,11 +19,9 @@ const limiter = rateLimit({
 });
 
 const app = express();
-// удалить после успешного прохождения ревью
-app.use(headerHandler);
-// app.use(cors({ origin: allowedCors })); // подключаем защиту от запросов с других сайтов
-app.use(helmet());
+app.use(headerHandler); // удалить после успешного прохождения ревью
 
+app.use(helmet());
 app.use(requestLogger); // подключаем логгер запросов
 app.use(limiter); // подключаем rate-limiter
 app.use(cookieParser()); // подключаем парсер кук как мидлвэр
