@@ -6,12 +6,12 @@ const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const cors = require('cors');
+// const cors = require('cors');
 
 const routes = require('./routes/index');
 const errorsHandler = require('./middlewares/errorsHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-// const headerHandler = require('./middlewares/headerHandler');
+const headerHandler = require('./middlewares/headerHandler');
 
 const { PORT = 3000 } = process.env; // ошибка запроса на сервер без указания порта
 const limiter = rateLimit({
@@ -19,20 +19,10 @@ const limiter = rateLimit({
   max: 100, // можно совершить максимум 100 запросов с одного IP
 });
 
-const allowedCors = [
-  'https://praktikum.tk',
-  'http://praktikum.tk',
-  'https://localhost:3000',
-  'https://mesto-shishkov.nomoredomains.icu',
-  'http://mesto-shishkov.nomoredomains.icu',
-  'https://mesto-shishkov.nomoredomains.icu',
-  'http://localhost:3000',
-];
-
 const app = express();
 // удалить после успешного прохождения ревью
-// app.use(headerHandler);
-app.use(cors({ origin: allowedCors })); // подключаем защиту от запросов с других сайтов
+app.use(headerHandler);
+// app.use(cors({ origin: allowedCors })); // подключаем защиту от запросов с других сайтов
 app.use(helmet());
 
 app.use(requestLogger); // подключаем логгер запросов
