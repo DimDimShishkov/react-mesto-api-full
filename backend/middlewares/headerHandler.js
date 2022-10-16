@@ -4,19 +4,14 @@
 const allowedCors = [
   'https://praktikum.tk',
   'http://praktikum.tk',
-  'localhost:3000',
-  'https://mesto-shishkov.nomoredomains.icu/',
-  'http://mesto-shishkov.nomoredomains.icu/',
+  'https://localhost:3000',
+  'https://mesto-shishkov.nomoredomains.icu',
+  'http://mesto-shishkov.nomoredomains.icu',
   'http://localhost:3000',
-  'https://api.mesto-shishkov.nomoredomains.icu',
-  'https://api.mesto-shishkov.nomoredomains.icu/users/me',
-  'https://api.mesto-shishkov.nomoredomains.icu/cards',
 ];
 
-// eslint-disable-next-line consistent-return
 module.exports = (err, req, res, next) => {
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
-
   const { method } = req; // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
   // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
@@ -27,10 +22,10 @@ module.exports = (err, req, res, next) => {
   if (allowedCors.includes(origin)) {
     // устанавливаем заголовок, который разрешает браузеру запросы с этого источника
     res.header('Access-Control-Allow-Origin', origin);
+    req.header('Access-Control-Allow-Credentials', true);
   }
   // Если это предварительный запрос, добавляем нужные заголовки
   if (method === 'OPTIONS') {
-    req.header('Access-Control-Allow-Credentials', true);
     // разрешаем кросс-доменные запросы любых типов (по умолчанию)
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
     // разрешаем кросс-доменные запросы с этими заголовками
@@ -38,5 +33,5 @@ module.exports = (err, req, res, next) => {
     // завершаем обработку запроса и возвращаем результат клиенту
     return res.end();
   }
-  next();
+  return next();
 };
