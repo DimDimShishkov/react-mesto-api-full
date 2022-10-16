@@ -88,6 +88,7 @@ class Api {
 }
 
 export const api = new Api({
+  // url: "http://localhost",
   url: "https://api.mesto-shishkov.nomoredomains.icu",
   headers: {
     authorization: "02d68e11-bd2f-4860-a475-a40f4f8a5368",

@@ -6,10 +6,25 @@ const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const cors = require('cors');
+
 const routes = require('./routes/index');
 const errorsHandler = require('./middlewares/errorsHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const headerHandler = require('./middlewares/headerHandler');
+
+const allowedCors = [
+  'https://praktikum.tk',
+  'http://praktikum.tk',
+  'localhost:3000',
+  'https://mesto-shishkov.nomoredomains.icu/',
+  'http://mesto-shishkov.nomoredomains.icu/',
+  'http://localhost:3000',
+  'http://localhost:3000/',
+  'https://api.mesto-shishkov.nomoredomains.icu',
+  'https://api.mesto-shishkov.nomoredomains.icu/users/me',
+  'https://api.mesto-shishkov.nomoredomains.icu/cards',
+];
 
 const { PORT = 3000 } = process.env; // ошибка запроса на сервер без указания порта
 const limiter = rateLimit({
@@ -18,6 +33,7 @@ const limiter = rateLimit({
 });
 
 const app = express();
+app.use(cors({ origin: allowedCors })); // подключаем защиту от запросов с других сайтов
 app.use(helmet());
 
 app.use(requestLogger); // подключаем логгер запросов
@@ -32,7 +48,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 // удалить после успешного прохождения ревью
-app.use(headerHandler);
+// app.use(headerHandler);
 
 app.get('/crash-test', () => {
   setTimeout(() => {

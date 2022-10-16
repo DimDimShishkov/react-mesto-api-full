@@ -14,6 +14,6 @@ router.use(auth);
 // роуты, которым авторизация нужна
 router.use('/users', userRouter);
 router.use('/cards', cardRouter);
-router.use('*', notFoundController);
+router.use('/*', notFoundController);
 
 module.exports = router;
