@@ -1,5 +1,3 @@
-// const cors = require('cors');
-
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
   'https://praktikum.tk',

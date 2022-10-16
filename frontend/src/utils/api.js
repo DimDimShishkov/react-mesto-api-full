@@ -16,6 +16,7 @@ class Api {
   handleUploadProfileInfo(data) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
@@ -28,6 +29,7 @@ class Api {
   handleUploadProfileAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         avatar: data.avatar,
@@ -39,6 +41,7 @@ class Api {
   handleDownloadProfileInfo() {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
+      credentials: 'include',
       headers: this._headers,
     }).then((res) => this._handleReturn(res));
   }
@@ -47,6 +50,7 @@ class Api {
   handleDownloadCards() {
     return fetch(`${this._url}/cards`, {
       method: "GET",
+      credentials: 'include',
       headers: this._headers,
     }).then((res) => this._handleReturn(res));
   }
@@ -55,6 +59,7 @@ class Api {
   handleUploadCard(item) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: item.name,
@@ -67,6 +72,7 @@ class Api {
   handleDeleteServerCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
+      credentials: 'include',
       headers: this._headers,
     }).then((res) => this._handleReturn(res));
   }
@@ -80,6 +86,7 @@ class Api {
     }
     return fetch(`${this._url}/cards/${cardId}/likes `, {
       method: this._method,
+      credentials: 'include',
       headers: this._headers,
     }).then((res) => {
       return this._handleReturn(res);
@@ -88,7 +95,6 @@ class Api {
 }
 
 export const api = new Api({
-  // url: "http://localhost",
   url: "https://api.mesto-shishkov.nomoredomains.icu",
   headers: {
     authorization: "02d68e11-bd2f-4860-a475-a40f4f8a5368",

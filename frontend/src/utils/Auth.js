@@ -1,5 +1,4 @@
 const BASE_URL = "https://api.mesto-shishkov.nomoredomains.icu";
-// const BASE_URL = "http://localhost";
 
 const handleReturn = (res) => {
   if (res.ok) {
@@ -11,6 +10,7 @@ const handleReturn = (res) => {
 export const authRegister = (user) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
+    credentials: 'include',
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json",
@@ -25,6 +25,7 @@ export const authRegister = (user) => {
 export const authCheckIn = (user) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
+    credentials: 'include',
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json",
@@ -39,6 +40,7 @@ export const authCheckIn = (user) => {
 export const authTokenCheck = (jwt) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
+    credentials: 'include',
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json",
