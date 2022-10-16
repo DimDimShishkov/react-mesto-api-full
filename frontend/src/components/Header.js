@@ -27,19 +27,17 @@ function Header({ email, logOff }) {
         </>
       );
     } else {
-      
-        location.pathname === '/sign-up'
-          ? (authbutton = (
-              <Link to="/sign-in" className="header__auth">
-                <button className="header__button">Войти</button>
-              </Link>
-            ))
-          : (authbutton = (
-              <Link to="/sign-up" className="header__auth">
-                <button className="header__button">Регистрация</button>
-              </Link>
-            ));
-      
+      location.pathname === '/signup'
+        ? (authbutton = (
+            <Link to="/signin" className="header__auth">
+              <button className="header__button">Войти</button>
+            </Link>
+          ))
+        : (authbutton = (
+            <Link to="/signup" className="header__auth">
+              <button className="header__button">Регистрация</button>
+            </Link>
+          ));
     }
   })(email);
 

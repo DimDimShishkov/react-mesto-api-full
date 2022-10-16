@@ -58,7 +58,7 @@ function handleSubmit(evt) {
       {props.formName === 'register' ? (
         <p className="auth__subheading">
           Уже зарегистрированы?
-          <Link to="/sign-in" className="auth__link">
+          <Link to="/signin" className="auth__link">
             {' '}
             Войти
           </Link>

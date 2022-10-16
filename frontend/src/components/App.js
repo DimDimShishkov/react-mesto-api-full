@@ -216,8 +216,6 @@ function App() {
     history.push('/signup');
   }
 
-
-
   // функция авторизации
   const authorisation = async (jwt) => {
     authTokenCheck(jwt)
@@ -228,7 +226,7 @@ function App() {
             id: res.data._id,
             email: res.data.email,
           });
-          
+
           history.push('/');
         }
       })
@@ -239,7 +237,7 @@ function App() {
 
   useEffect(() => {
     let jwt = localStorage.getItem('jwt');
-    
+
     if (jwt) {
       authorisation(jwt);
     }
@@ -265,7 +263,7 @@ function App() {
           />
 
           <Route exact path="/">
-            {loggedIn ? <Redirect to="/react-mesto-auth" /> : <Redirect to="/sign-up" />}
+            {loggedIn ? <Redirect to="/react-mesto-auth" /> : <Redirect to="/signup" />}
           </Route>
 
           <Route path="/signup">

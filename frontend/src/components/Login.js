@@ -7,7 +7,7 @@ function Login(props) {
     props.handleLoggIn(user);
   }
 
-  return <AuthWithForm title={'Вход'} formName={'login'} buttonText='Войти' onSubmit={handleSubmit} />;
+  return <AuthWithForm title={'Вход'} formName={'login'} buttonText="Войти" onSubmit={handleSubmit} />;
 }
 
 export default withRouter(Login);
