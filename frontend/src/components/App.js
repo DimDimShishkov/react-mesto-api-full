@@ -180,7 +180,7 @@ function App() {
         setAuthPopupOpen(true);
         setLoggedIn(user.email);
         localStorage.setItem('jwt', res.token);
-        history.push('/sign-in');
+        history.push('/signin');
       })
       .catch((err) => {
         console.log(err);
@@ -213,7 +213,7 @@ function App() {
     setLoggedIn(false);
     setUserData({ id: '', email: '' });
     localStorage.removeItem('jwt');
-    history.push('/sign-up');
+    history.push('/signup');
   }
 
 
@@ -245,24 +245,6 @@ function App() {
     }
   }, [loggedIn]);
 
-  // уточнить у Жени на продленке
-  /*   useEffect(() => {
-    console.log(localStorage.getItem('jwt'))
-    if (!!localStorage.getItem('jwt')) {
-      isTokenCheck(true)
-    }
-  }, []); */
-
-/*   let location = useLocation()
-
-  useEffect(() => {
-    if (location.pathname === '/sign-up' || location.pathname === '/sign-in') {
-      history.push('/');
-    } else {
-      history.push('/404');
-    }
-  }, []) */
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className={`page ${pageBlock && 'page_active'}`}>
@@ -286,11 +268,11 @@ function App() {
             {loggedIn ? <Redirect to="/react-mesto-auth" /> : <Redirect to="/sign-up" />}
           </Route>
 
-          <Route path="/sign-up">
+          <Route path="/signup">
             <Register handleLoggIn={handleRegister} />
           </Route>
 
-          <Route path="/sign-in">
+          <Route path="/signin">
             <Login handleLoggIn={handleAuth} />
           </Route>
         </Switch>
