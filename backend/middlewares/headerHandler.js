@@ -9,6 +9,7 @@ const allowedCors = [
   'http://localhost:3000',
 ];
 
+// eslint-disable-next-line consistent-return
 module.exports = (req, res, next) => {
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
   const { method } = req; // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
@@ -20,7 +21,7 @@ module.exports = (req, res, next) => {
   if (allowedCors.includes(origin)) {
     // устанавливаем заголовок, который разрешает браузеру запросы с этого источника
     res.header('Access-Control-Allow-Origin', origin);
-    req.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Credentials', true);
   }
   // Если это предварительный запрос, добавляем нужные заголовки
   if (method === 'OPTIONS') {
@@ -31,5 +32,5 @@ module.exports = (req, res, next) => {
     // завершаем обработку запроса и возвращаем результат клиенту
     return res.end();
   }
-  return next();
+  next();
 };

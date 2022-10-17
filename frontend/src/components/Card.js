@@ -7,9 +7,10 @@ function Card({ onCardClick, onCardLike, card, onCardDelete }) {
     link,
     name,
     _id,
-    owner: { _id: ownerId },
+    owner,
+    likes
   } = card;
-  const likes = card.likes.map((item) => item._id);
+  // const likes = card.likes/* .map((item) => item._id) */;
 
   function handleShowLikes() {
     if (likes.length > 0) {
@@ -20,12 +21,12 @@ function Card({ onCardClick, onCardLike, card, onCardDelete }) {
   }
 
   // Определяем, являемся ли мы владельцем текущей карточки
-  const isOwn = ownerId === currentUser?._id;
+  const isOwn = owner === currentUser?._id;
 
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
   const isLiked = likes.includes(currentUser?._id);
 
-    function handleClick() {
+  function handleClick() {
     onCardClick(card);
   }
 
@@ -51,7 +52,11 @@ function Card({ onCardClick, onCardLike, card, onCardDelete }) {
           <p className={`element__likes ${handleShowLikes() ? 'element__likes_active' : ''}`}>{likes.length}</p>
         </div>
       </div>
-      <button className={isOwn ? 'element__remove' : 'element__remove_disabled '} type="button" onClick={handleDeleteClick}></button>
+      <button
+        className={isOwn ? 'element__remove' : 'element__remove_disabled '}
+        type="button"
+        onClick={handleDeleteClick}
+      ></button>
     </article>
   );
 }

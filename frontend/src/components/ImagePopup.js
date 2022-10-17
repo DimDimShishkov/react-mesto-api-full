@@ -1,25 +1,29 @@
-const React = require('react');
+import React, { useEffect } from 'react';
 
-export default function ImagePopup(props) {
+export default function ImagePopup({card, onClose, }) {
 
-  function closePopup(evt) {
-    if (evt.key === 'Escape' ||
-    evt.target.classList.contains('popup_opened') ||
-    evt.target.classList.contains('popup__exit-button')) {
-      props.onClose()
-    }
-  }
+  useEffect(() => {
+    function closeOnEsc(evt) {
+      if (evt.key === 'Escape') {
+        onClose();
+      }
+    };
+    document.addEventListener('keydown', closeOnEsc);
+    return () => {
+      document.removeEventListener('keydown', closeOnEsc);
+    };
+  }, []);
 
   return (
-    <div className={`popup popup_type_image ${props.card && 'popup_opened'}`} onClick={closePopup}>
-      <div className="popup__looking">
+    <div className={`popup popup_type_image ${card && 'popup_opened'}`} onClick={() => onClose()}>
+      <div className="popup__looking" onClick={(e) => e.stopPropagation()}>
         <img
-          src={props.card?.link}
-          alt={props.card?.name}
+          src={card?.link}
+          alt={card?.name}
           className="popup__image"
         />
-        <button className="popup__exit-button" type="button" onClick={props.onClose}></button>
-        <h2 className="popup__description">{props.card?.name}</h2>
+        <button className="popup__exit-button" type="button" onClick={() => onClose()}></button>
+        <h2 className="popup__description">{card?.name}</h2>
       </div>
     </div>
   );

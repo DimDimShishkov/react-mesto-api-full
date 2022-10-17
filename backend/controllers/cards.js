@@ -5,14 +5,14 @@ const ValidationError = require('../errors/ValidationError');
 
 module.exports.getAllCards = (req, res, next) => {
   Card.find({})
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.send(card))
     .catch(next);
 };
 
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidationError(err.message));
@@ -28,7 +28,7 @@ module.exports.deleteCard = (req, res, next) => {
     .then((user) => {
       if (user.owner.toString() === req.user._id) {
         Card.findByIdAndRemove(req.params.cardId)
-          .then((item) => res.send({ data: item }))
+          .then((item) => res.send(item))
           .catch(next);
       } else {
         next(new Forbidden('Карточка создана другим пользователем'));
@@ -45,7 +45,7 @@ module.exports.likeCard = (req, res, next) => {
   ).orFail(new NotFound(
     `Карточка c ID = ${req.params.cardId} не найдена`,
   ))
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch(next);
 };
 
@@ -57,6 +57,6 @@ module.exports.dislikeCard = (req, res, next) => {
   ).orFail(new NotFound(
     `Карточка c ID = ${req.params.cardId} не найдена`,
   ))
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch(next);
 };

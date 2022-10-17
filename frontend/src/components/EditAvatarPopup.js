@@ -2,7 +2,7 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
-  const avatarRef = React.useRef(null)
+  const avatarRef = React.useRef(null);
   const [buttonText, setButtonText] = React.useState('Сохранить');
 
   React.useEffect(() => {
@@ -19,7 +19,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
       setButtonText('Сохранить');
     }
     onUpdateAvatar({
-      avatar: avatarRef.current.value
+      avatar: avatarRef.current.value,
     });
   }
 

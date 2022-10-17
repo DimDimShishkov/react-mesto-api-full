@@ -9,7 +9,7 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch(next);
 };
 
@@ -17,7 +17,7 @@ module.exports.getUser = (req, res, next) => {
   User.findById(req.params.usersId).orFail(new NotFound(
     `Пользователь c ID = ${req.params.usersId} не найден`,
   ))
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch(next);
 };
 
@@ -25,7 +25,7 @@ module.exports.getUserInfo = (req, res, next) => {
   User.findById(req.user._id).orFail(new NotFound(
     `Пользователь c ID = ${req.user._id} не найден`,
   ))
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch(next);
 };
 
@@ -39,7 +39,7 @@ module.exports.createUser = (req, res, next) => {
     }))
     .then((user) => {
       res.send({
-        name: user.name, about: user.about, avatar: user.avatar, email: user.email,
+        name: user.name, about: user.about, avatar: user.avatar, email: user.email, _id: user._id,
       });
     })
     .catch((err) => {
@@ -58,7 +58,7 @@ module.exports.updateUserProfile = (req, res, next) => {
     .orFail(new NotFound(
       'Пользователь не найден',
     ))
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidationError(err.message));
@@ -73,7 +73,7 @@ module.exports.updateUserAvatar = (req, res, next) => {
     .orFail(new NotFound(
       'Пользователь не найден',
     ))
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidationError(err.message));

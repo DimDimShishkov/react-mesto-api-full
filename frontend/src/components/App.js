@@ -74,7 +74,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [loggedIn]);
 
   // загрузка карточек
   useEffect(() => {
@@ -86,7 +86,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [loggedIn]);
 
   // функция установки лайка на картинку
   function handleCardLike(id, isLiked) {
@@ -178,7 +178,7 @@ function App() {
       .then((res) => {
         setAuthPopup(true);
         setAuthPopupOpen(true);
-        setLoggedIn(user.email);
+        setCurrentUser(res);
         localStorage.setItem('jwt', res.token);
         history.push('/signin');
       })
@@ -193,9 +193,9 @@ function App() {
   function handleAuth(user) {
     authCheckIn(user)
       .then((res) => {
-        setLoggedIn(user.email);
+        setLoggedIn(true);
         setUserData({
-          id: '',
+          id: user._id,
           email: user.email,
         });
         localStorage.setItem('jwt', res.token);
@@ -212,6 +212,8 @@ function App() {
   function handleLoggegOut() {
     setLoggedIn(false);
     setUserData({ id: '', email: '' });
+    setCurrentUser({})
+    setIsLoading(false);
     localStorage.removeItem('jwt');
     history.push('/signup');
   }
@@ -221,10 +223,10 @@ function App() {
     authTokenCheck(jwt)
       .then((res) => {
         if (res) {
-          setLoggedIn(res.data.email);
+          setLoggedIn(true);
           setUserData({
-            id: res.data._id,
-            email: res.data.email,
+            id: res._id,
+            email: res.email,
           });
           history.push('/');
         }

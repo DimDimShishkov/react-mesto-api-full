@@ -1,27 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-export default function InfoTooltip(props) {
-  function closePopup(evt) {
-    if (
-      evt.key === 'Escape' ||
-      evt.target.classList.contains('popup_opened') ||
-      evt.target.classList.contains('popup__exit-button')
-    ) {
-      props.onClose();
-    }
-  }
+export default function InfoTooltip({ isOpen, auth, onClose }) {
+  useEffect(() => {
+    function closeOnEsc(evt) {
+      if (evt.key === 'Escape') {
+        onClose();
+      }
+    };
+    document.addEventListener('keydown', closeOnEsc);
+    return () => {
+      document.removeEventListener('keydown', closeOnEsc);
+    };
+  }, []);
 
   return (
-    <div className={`popup ${props.isOpen && 'popup_opened'}`} onClick={closePopup}>
-      <div className="popup__container popup__auth-container">
+    <div className={`popup ${isOpen && 'popup_opened'}`} onClick={() => onClose()}>
+      <div className="popup__container popup__auth-container" onClick={(e) => e.stopPropagation()}>
         <span
-          className={`popup__auth-image ${props.auth ? 'popup__auth-image_correct' : 'popup__auth-image_incorrect'}`}
+          className={`popup__auth-image ${auth ? 'popup__auth-image_correct' : 'popup__auth-image_incorrect'}`}
         ></span>
         <h2 className="popup__title popup__auth-title">
-          {props.auth ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте ещё раз.'}
+          {auth ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте ещё раз.'}
         </h2>
 
-        <button className="popup__exit-button" type="button" onClick={closePopup}></button>
+        <button className="popup__exit-button" type="button" onClick={() => onClose()}></button>
       </div>
     </div>
   );
