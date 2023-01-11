@@ -1,0 +1,4 @@
+.page_active {
+  overflow-y: hidden;
+  /* height: 100vh; */
+}

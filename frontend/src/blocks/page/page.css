@@ -1,0 +1,13 @@
+.page {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+  background: #000;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif, Arial;
+  color: #fff;
+  text-rendering: optimizeLegibility;
+  display: flex;
+  flex-direction: column;
+}

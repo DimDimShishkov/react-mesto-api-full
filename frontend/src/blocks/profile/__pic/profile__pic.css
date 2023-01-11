@@ -1,0 +1,21 @@
+.profile__pic {
+  position: relative;
+  width: 100%;
+  max-width: 120px;
+  max-height: 120px;
+  height: 100%;
+}
+
+.profile__pic:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: all 0.2s ease;
+}
+
+.profile__pic:hover:before {
+  background: rgba(0, 0, 0, 0.8);
+}
