@@ -15,7 +15,7 @@ class Api {
   // Редактирование профиля
   handleUploadProfileInfo(data) {
     return fetch(`${this._url}/users/me`, {
-      method: "PATCH",
+      method: 'PATCH',
       credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
@@ -28,7 +28,7 @@ class Api {
   // Редактирование аватара профиля
   handleUploadProfileAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
-      method: "PATCH",
+      method: 'PATCH',
       credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
@@ -40,7 +40,7 @@ class Api {
   // Загрузка информации о пользователе с сервера
   handleDownloadProfileInfo() {
     return fetch(`${this._url}/users/me`, {
-      method: "GET",
+      method: 'GET',
       credentials: 'include',
       headers: this._headers,
     }).then((res) => this._handleReturn(res));
@@ -49,7 +49,7 @@ class Api {
   // Загрузка карточек с сервера
   handleDownloadCards() {
     return fetch(`${this._url}/cards`, {
-      method: "GET",
+      method: 'GET',
       credentials: 'include',
       headers: this._headers,
     }).then((res) => this._handleReturn(res));
@@ -58,7 +58,7 @@ class Api {
   // Загрузка карточек на сервер
   handleUploadCard(item) {
     return fetch(`${this._url}/cards`, {
-      method: "POST",
+      method: 'POST',
       credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
@@ -71,7 +71,7 @@ class Api {
   // Удаление картинки
   handleDeleteServerCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
-      method: "DELETE",
+      method: 'DELETE',
       credentials: 'include',
       headers: this._headers,
     }).then((res) => this._handleReturn(res));
@@ -80,9 +80,9 @@ class Api {
   // Добавление или удаление лайков на картинку
   handleCardLikes(cardId, method) {
     if (method) {
-      this._method = "PUT";
+      this._method = 'PUT';
     } else {
-      this._method = "DELETE";
+      this._method = 'DELETE';
     }
     return fetch(`${this._url}/cards/${cardId}/likes `, {
       method: this._method,
@@ -95,12 +95,10 @@ class Api {
 }
 
 export const api = new Api({
-  url: "http://localhost",
-  // url: "https://api.mesto-shishkov.nomoredomains.icu",
+  // url: "http://localhost",
+  url: 'https://api.mesto-shishkov.nomoredomains.icu',
   headers: {
-    authorization: "02d68e11-bd2f-4860-a475-a40f4f8a5368",
-    "Content-Type": "application/json",
-  }
-})
-
-/* export default api; */
+    authorization: '02d68e11-bd2f-4860-a475-a40f4f8a5368',
+    'Content-Type': 'application/json',
+  },
+});
