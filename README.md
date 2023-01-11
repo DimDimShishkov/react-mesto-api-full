@@ -1,5 +1,7 @@
 # Проектная работа "Mesto" (api-full)
 
+![image](https://raw.githubusercontent.com/DimDimShishkov/react-mesto-api-full/main/mesto-api-full.gif)
+
 #### Описание
 
 - Проект "Mesto": интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.
