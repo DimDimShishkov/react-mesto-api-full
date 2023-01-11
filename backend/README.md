@@ -1,56 +1,54 @@
-[![Tests](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-13-sprint.yml/badge.svg)](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-13-sprint.yml) [![Tests](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-14-sprint.yml)
-
-[![Tests](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/DimDimShishkov/express-mesto-gha/actions/workflows/tests-14-sprint.yml)
-
 [![Tests](https://github.com/DimDimShishkov/express-mesto-gha/actions/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/DimDimShishkov/express-mesto-gha/actions/workflows/tests-14-sprint.yml)
 
-[![Tests](https://github.com/DimDimShishkov/react-mesto-api-full/blob/main/backend/.github/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/DimDimShishkov/react-mesto-api-full/blob/main/backend/.github/workflows/tests-14-sprint.yml)
+# Проектная работа "Mesto" (backend)
 
-[![Tests for sprint 14](https://github.com/DimDimShishkov/react-mesto-api-full/blob/main/backend/actions/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/DimDimShishkov/react-mesto-api-full/blob/main/backend/actions/workflows/tests-14-sprint.yml)
+#### Описание
 
-# Проект Mesto фронтенд + бэкенд
+- Проект "Mesto": интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.
+- Фронтенд часть приложения со следующими возможностями: авторизация и регистрация пользователя, операции с карточками и данными пользователя.
+- [Ссылка на Backend](https://api.mesto-shishkov.nomoredomains.icu)
 
-## Настройка бейджей статуса тестов
+#### Технологии
 
-Перед началом работы над проектом рекомендуется исправить бейджи, отражающие статус прохождения тестов.
-Для этого замените разметку бейджей на следующий фрагмент, подставив вместо `${имя_пользователя}` и `${имя_репозитория}` соответствующие значения.
+- Express
+- MongodDB
+- NodeJS
+- Mongoose
 
-```
-[![Tests for sprint 13](https://github.com/DimDimShishkov/react-mesto-api-full/tree/main/backend/.github/workflows/tests-13-sprint.yml/badge.svg)](https://github.com/DimDimShishkov/react-mesto-api-full/tree/main/backend/.github/workflows/tests-13-sprint.yml)
+### Чек-листы:
 
-[![Tests for sprint 14](https://github.com/${имя_пользователя}/${имя репозитория}/actions/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/${имя_пользователя}/${имя репозитория}/actions/workflows/tests-14-sprint.yml)
-```
+- [чек-лист для проектной работы 13](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist_13.pdf) (подготовка бэкенда для приложения)
+- [чек-лист для проектной работы 14](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist_14.pdf)
+- [чек-лист для проектной работы 15](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist_15.pdf) (объединение фронтенд и бэкенд частей приложения)
 
-### Директории
+### Основные директории
 
 `/routes` — папка с файлами роутера  
 `/controllers` — папка с файлами контроллеров пользователя и карточки  
 `/models` — папка с файлами описания схем пользователя и карточки
 
-Остальные директории вспомогательные, создаются при необходимости разработчиком
-
 ### Запросы
 
 - `GET` /users — получить всех пользователей
-- `GET` /users/:userId — поучить пользователя по \_id
+- `GET` /users/:userId — поучить пользователя по id
 - `POST` /users — создать пользователя
-  - `name` — имя пользователя, строка от 2 до 30 символов, обязательное поле;
-  - `about` — информация о пользователе, строка от 2 до 30 символов, обязательное поле;
-  - `avatar` — ссылка на аватарку, строка, обязательное поле.
+  - `name` — имя пользователя, строка от 2 до 30 символов (обязательное поле)
+  - `about` — информация о пользователе, строка от 2 до 30 символов (обязательное поле)
+  - `avatar` — ссылка на аватарку, строка (обязательное поле)
 - `PATCH` /users/me — обновить профиль пользователя
 - `PATCH` /users/me/avatar — обновить аватар пользователя
 - `GET` /cards — получить все карточки
 - `POST` /cards — создать карточку
-  - `name` — имя карточки, строка от 2 до 30 символов, обязательное поле;
-  - `link` — ссылка на картинку, строка, обязательно поле;
-  - `owner` — ссылка на модель автора карточки, тип ObjectId, обязательное поле;
-  - `likes` — список лайкнувших пост пользователей, массив ObjectId, по умолчанию — пустой массив (поле `default`);
-  - `createdAt` — дата создания, тип `Date`, значение по умолчанию `Date.now`.
-- `DELETE` /cards/:cardId — удалить карточку по \_id
-- `PUT` /cards/:cardId/likes — лайк карточке
-- `DELETE` /cards/:cardId/likes — дизлайк карточки
+  - `name` — имя карточки, строка от 2 до 30 символов (обязательное поле)
+  - `link` — ссылка на картинку, строка (обязательное поле)
+  - `owner` — ссылка на модель автора карточки, тип ObjectId (обязательное поле)
+  - `likes` — список лайкнувших пост пользователей, массив ObjectId, (значение по умолчанию: пустой массив)
+  - `createdAt` — дата создания, тип `Date` (значение по умолчанию: `Date.now`)
+- `DELETE` /cards/:cardId — удалить карточку по id
+- `PUT` /cards/:cardId/likes — поставить лайк карточке
+- `DELETE` /cards/:cardId/likes — убрать лайк с карточки
 
-### ❗ Обработка ошибок
+### Обработка ошибок
 
 - `400` — переданы некорректные данные в методы создания карточки, пользователя, обновления аватара пользователя или профиля;
 - `401` — токен не верифицирован, требуется авторизация / неправильные почта или пароль.
@@ -59,7 +57,9 @@
 - `409` — при регистрации указана почта существующего пользователя.
 - `500` — ошибка по-умолчанию.
 
-### Запуск проекта
+## Установка и запуск проекта:
 
-`npm run start` — запускает сервер  
-`npm run dev` — запускает сервер с hot-reload
+`git clone https://github.com/DimDimShishkov/express-mesto-gha.git` - клонировать репозиторий
+`npm install` - установить зависимости
+`npm run start` - запустить сервер
+`npm run dev` - запустить сервер с hot-reload
